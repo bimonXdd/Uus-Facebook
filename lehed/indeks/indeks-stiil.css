@@ -1,0 +1,50 @@
+:root{
+    --color-primary:#38521d;
+    --color-secondary: #80887d;
+    --color-text: #f0f8ff;
+}
+
+    
+body {
+    background-color: var(--color-secondary);
+}
+    
+.tekst{
+    color: var(--color-text);
+    height: 2;
+    text-shadow: currentColor;
+}
+.tekst h1{
+    font:2em sans-serif;
+    z-index: 2;
+    text-shadow: 2px 3px 2px darkgray;
+}
+.tekst p {
+    font: 1em sans-serif;
+    line-break: 4;
+
+}
+
+.lingid-konteiner {
+    display: flex;
+    height: max-content;
+    flex-direction: column;
+    justify-content: stretch;
+}
+.lingid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.1em 1em;
+}
+
+.lingid a {
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-text);
+    background-color: var(--color-primary);
+    border-radius: 0.2em;
+    margin: 1em;
+    padding: 1em;
+}
