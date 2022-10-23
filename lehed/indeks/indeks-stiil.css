@@ -1,17 +1,18 @@
 :root{
-    --color-primary:#38521d;
-    --color-secondary: #80887d;
+    --color-primary:#F89999;
+    --color-secondary: #F6C0BA;
+    --color-accent: #3C362A;
     --color-text: #f0f8ff;
 }
 
     
 body {
-    background-color: var(--color-secondary);
+    background-color: hsla(0, 87%, 79%, 1);
 }
     
 .tekst{
+    margin: 15%;
     color: var(--color-text);
-    height: 2;
     text-shadow: currentColor;
 }
 .tekst h1{
@@ -43,7 +44,7 @@ body {
     text-align: center;
     text-decoration: none;
     color: var(--color-text);
-    background-color: var(--color-primary);
+    background-color: var(--color-accent);
     border-radius: 0.2em;
     margin: 1em;
     padding: 1em;
