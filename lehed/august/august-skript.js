@@ -2,17 +2,30 @@ const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
 
-let xPosition = canvas.width/2;
-let yPosition = canvas.height-30;
-let playerRadius = 10;
+let mängijaAsukohtX = canvas.width/2;
+let mängijaAsukohtY = canvas.height-30;
+let mängijaSuurus = 10;
 let dx = 2
 let dy = -2
 
+let onVasakule = false;
+let onParemale = false;
+let hiireAsukoht = {"x": 0, "y":0}
 
+function leiaHiireAsukoht(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+canvas.addEventListener('mousemove', function(evt) {
+  hiireAsukoht = leiaHiireAsukoht(canvas, evt);
+}, false);
 
 function drawPlayer() {
     context.beginPath();
-    context.arc(xPosition, yPosition, playerRadius, 0, Math.PI*2);
+    context.arc(mängijaAsukohtX, mängijaAsukohtY, mängijaSuurus, 0, Math.PI*2);
     context.fillStyle = "#0095DD";
     context.fill();
     context.closePath();
@@ -22,18 +35,22 @@ function drawPlayer() {
 
 function draw() {
     context.clearRect(0,0, canvas.width, canvas.height);
-    drawPlayer();
-    xPosition += dx;
-    yPosition += dy;
+    context.canvas.width = window.innerWidth-10
+    context.canvas.height = window.innerHeight/1.1
 
-    if (xPosition + dx > canvas.width - playerRadius || xPosition + dx < playerRadius) {
+    drawPlayer();
+    mängijaAsukohtX = hiireAsukoht.x;
+    mängijaAsukohtY = hiireAsukoht.y;
+
+    if (mängijaAsukohtX + dx > canvas.width - mängijaSuurus || mängijaAsukohtX + dx < mängijaSuurus) {
         dx = -dx;
       }
-      if (yPosition + dy > canvas.height - playerRadius || yPosition + dy < playerRadius) {
+      if (mängijaAsukohtY + dy > canvas.height - mängijaSuurus || mängijaAsukohtY + dy < mängijaSuurus) {
         dy = -dy;
       }
       
 }
 
-setInterval(draw, 10);
+
+setInterval(draw, 0.0001);
   
