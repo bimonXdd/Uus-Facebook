@@ -6,3 +6,5 @@ Madise
 Simoni
 
 Augusti
+Teen mingi mängu või paar JS-is :D
+
