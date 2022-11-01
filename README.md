@@ -4,6 +4,7 @@ Plaan mida teha lehele
 Madise 
 
 Simoni
+Proovin teha mingi paar huvitavat API asja
 
 Augusti
 Teen mingi mängu või paar JS-is :D

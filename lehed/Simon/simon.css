@@ -1,0 +1,33 @@
+:root{
+    --color-primary:#F89999;
+    --color-secondary: #F6C0BA;
+    --color-accent: #3C362A;
+    --color-text: #f0f8ff;
+}
+
+#valikud{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem, 1.5rem, 1rem, 1.5rem;
+    background-color: var(--color-primary);
+
+}
+#nupp2, #nupp3, #nupp1{
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--color-secondary);
+    color:var(--color-text);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 5rem;
+    height: 2.5rem;
+}
+#nupp2:hover,#nupp1:hover,#nupp3:hover{
+    background-color: #3C362A;
+    transition: 1s ease-in-out;
+}
+
+
+
+
