@@ -13,9 +13,9 @@ body {
 
 div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    padding: 3% 0 3% 0 ;
+    padding: 1% 1% 1% 1% ;
 
 
 }
