@@ -1,10 +1,9 @@
 :root{
     --color-primary:#F89999;
     --color-secondary: #F6C0BA;
-    --color-accent: #3C362A;
+    --color-accent: rgb(91, 136, 136);
     --color-text: #f0f8ff;
 }
-
     
 body {
     background-color: hsla(0, 87%, 79%, 1);
@@ -26,26 +25,29 @@ body {
 
 }
 
-.lingid-konteiner {
+
+
+.lingid {
+    
     display: flex;
-    height: max-content;
-    flex-direction: column;
-    justify-content: stretch;
-}
-.lingid{
-    display: flex;
+    flex-flow: row;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.1em 1em;
+
+
+
 }
 
 .lingid a {
+    color: #f0f8ff;
+    width: max-content;
+    background-color: var(--color-secondary);
+    padding: 2%;
+    flex-grow: 100;
+    transition: 1s ease;
     text-align: center;
-    text-decoration: none;
-    color: var(--color-text);
+}
+
+.lingid a:hover {
+    flex-grow: 200;
     background-color: var(--color-accent);
-    border-radius: 0.2em;
-    margin: 1em;
-    padding: 1em;
 }

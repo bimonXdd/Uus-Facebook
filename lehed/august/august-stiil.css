@@ -1,13 +1,21 @@
-body {
-    background-color: gray;
+:root{
+    --color-primary:#F89999;
+    --color-secondary: #F6C0BA;
+    --color-accent: rgb(91, 136, 136);
+    --color-text: #f0f8ff;
+}
 
+
+body {
+    background-color: var(--color-accent);
+    overflow: hidden;
 }
 
 div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    padding: 3em 0 3em 0 ;
+    padding: 1% 1% 1% 1% ;
 
 
 }
