@@ -22,12 +22,12 @@
     margin-right: 1rem;
     width: 5rem;
     height: 2.5rem;
+    transition: 0.6s;
 }
+
 #nupp2:hover,#nupp1:hover,#nupp3:hover{
-    background-color: #3C362A;
-    transition: 1s ease-in-out;
+    background: #3C362A;
+    width: 6rem;
+    height: 3rem;
+    
 }
-
-
-
-
