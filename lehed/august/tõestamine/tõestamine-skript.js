@@ -5,7 +5,7 @@ let keskpuntk = [canvas.width/2,canvas.height/2];
 let hiireAshukoht = [0,0];
 let onDiagrammiMuut = false;
 let indeksPuutubKokku = false;
-let reaPikkus = 20
+let reaPikkus = 30
 
 let andmed = [
   { 
@@ -53,7 +53,7 @@ function arvutaDiagrammiSuurus() {
     let tekstPx = objekt.tekstSuurus
     objekt.ridu =  Math.floor(tekstPikkus/reaPikkus) 
     objekt.laius = reaPikkus / 2 * tekstPx + 10
-    objekt.kõrgus = tekstPx * objekt.ridu + 20
+    objekt.kõrgus = tekstPx * objekt.ridu + 30
   } 
 }
 arvutaDiagrammiSuurus()
@@ -68,7 +68,7 @@ function joonistaDiagramm () {
     context.fill();
     context.closePath();
 
-    for (let indeks = 0; indeks < objekt.ridu; indeks++) {
+    for (let indeks = 0; indeks < objekt.ridu+1; indeks++) {
       context.beginPath();
       context.font = objekt.tekstSuurus+"px serif";
       context.fillStyle = "rgb(255,255,255)";
