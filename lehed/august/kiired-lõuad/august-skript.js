@@ -49,15 +49,15 @@ let mängija = {
 }
 
 let vastane = {
-  "asukohtX" : suvalineInt(0,canvas.width),
-  "asukohtY" : suvalineInt(0,canvas.height),
   "suurus"  : suvalineInt(5,20),
+  "asukohtX" : suvalineInt(0, canvas.width - 20),
+  "asukohtY" : suvalineInt(0, canvas.height - 20),
   "onMängijaVastas" : false,
 }
 
 function uusVastane(){
-  vastane.asukohtX = suvalineInt(0,canvas.width)
-  vastane.asukohtY = suvalineInt(0,canvas.height)
+  vastane.asukohtX = suvalineInt(0, canvas.width - 20)
+  vastane.asukohtY = suvalineInt(0, canvas.height - 20)
   vastane.suurus = suvalineInt(5,20)
 }
 
@@ -94,9 +94,9 @@ function joonistaAeg() {
 }
 function joonistaMängAlgus() {
   let pealkiriPx = 40
- 
-
+  let vihjePx = 20
   let pealkiriAsukoht = [canvas.width*0.5, canvas.height*0.5]
+  let vihjeAsukoht = [canvas.width*0.5, canvas.height*0.8]
 
   context.beginPath();
   context.rect(0,0,canvas.width,canvas.height);
@@ -108,6 +108,12 @@ function joonistaMängAlgus() {
   context.fillStyle = "rgb(255,255,255)";
   context.textAlign = "center";
   context.fillText("Kiired lõuad", pealkiriAsukoht[0], pealkiriAsukoht[1]);
+  context.closePath();
+  context.beginPath();
+  context.font = vihjePx+"px serif";
+  context.fillStyle = "rgb(255,255,255)";
+  context.textAlign = "center";
+  context.fillText("Liigu et mängida!", vihjeAsukoht[0], vihjeAsukoht[1]);
   context.closePath();
 }
 function joonistaMängLäbi() {
@@ -202,16 +208,23 @@ function mängijaLiikumiseLoogika() {
 }
 function mänguStaatuseLoogika () {
 
-  let mängijaOnLiikunud = ( mängija.nupud.alla == true ||mängija.nupud.vasakule  == true ||
-                        mängija.nupud.paremale == true || mängija.nupud.ülesse == true);
-  if ((mänguStaatus == STAATUS_ALGUS && mängijaOnLiikunud) || (mänguStaatus == STAATUS_LÄBI && aega > 0)) { 
+  let mängijaOnLiikunud = 
+  ( mängija.nupud.alla == true ||mängija.nupud.vasakule  == true ||
+  mängija.nupud.paremale == true || mängija.nupud.ülesse == true);
+
+  if ((mänguStaatus == STAATUS_ALGUS && mängijaOnLiikunud) || 
+      (mänguStaatus == STAATUS_LÄBI && aega > 0)) { 
+
     mänguStaatus = STAATUS_KÄIB
+    
     if (aega == 1) {
       algaeg = performance.now();
     } 
   }
+
   if (aega < 0) {
     mänguStaatus = STAATUS_LÄBI
+    
     if (!onSurmaAeg) {
     arvutaAeg();
     }
@@ -223,17 +236,19 @@ function joonistaMäng() {
   context.canvas.width = window.innerWidth-10
   context.canvas.height = window.innerHeight/1.1
   context.clearRect(0,0, canvas.width, canvas.height);
-
   mänguStaatuseLoogika();
+
   if (mänguStaatus == STAATUS_ALGUS) {joonistaMängAlgus();}
+
   if (mänguStaatus == STAATUS_KÄIB) {
-    joonistaMängija();
     joonistaVastane();
+    joonistaMängija();
     joonistaAeg();  
     mänguLoogika();
-    kokkupuuteLoogika();
     mängijaLiikumiseLoogika(); 
+    kokkupuuteLoogika();
   }
+
   if (mänguStaatus == STAATUS_LÄBI) {
     joonistaMängLäbi();
   }
@@ -242,8 +257,6 @@ function joonistaMäng() {
     console.log("x:",mängija.asukohtX, "dx:",mängija.kiirus.dx, "laius:",canvas.width, "mängija-laius:",mängija.suurus.laius)
     console.log("Y:",mängija.asukohtY, "dy:",mängija.kiirus.dy, "kõrgus:",canvas.height, "mängija-kõrgus:",mängija.suurus.kõrgus)
   }
-
-  
 }
 
 
