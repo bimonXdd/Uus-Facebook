@@ -16,6 +16,24 @@ function nali(){
 };
 
 
+var audio = document.getElementById("Music")
+function EpicTrack(){
+	if (audio.paused){
+		audio.play()
+	}
+	else{
+		audio.pause()
+	}
+		
+}
+	
+		
+	
+
+
+
+
+
 
 
 
