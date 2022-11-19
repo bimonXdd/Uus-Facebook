@@ -1,8 +1,8 @@
 :root{
     --color-primary:#F89999;
     --color-secondary: #F6C0BA;
-    --color-accent: #3C362A;
-    --color-text: #f0f8ff;
+    --color-accent: #feeba2;
+    --color-text: black;
 }
 
 #valikud{
@@ -26,7 +26,7 @@
 }
 
 #nupp2:hover,#nupp1:hover,#nupp3:hover{
-    background: #3C362A;
+    background: #feeba2;
     width: 6rem;
     height: 3rem;
     
