@@ -1,26 +1,29 @@
 :root{
     --color-primary:#F89999;
-    --color-secondary: #F6C0BA;
-    --color-accent: rgb(91, 136, 136);
-    --color-text: #f0f8ff;
+    --color-secondary: #feeba2;
+    --color-accent: #feeba2;
+    --color-text: #a2feeb;
 }
     
 body {
-    background-color: hsla(0, 87%, 79%, 1);
+    
+    background-image: url('EpicTaust.png');
 }
     
 .tekst{
-    margin: 15%;
+    margin: 12%;
     color: var(--color-text);
     text-shadow: currentColor;
+    
 }
 .tekst h1{
-    font:2em sans-serif;
-    z-index: 2;
-    text-shadow: 2px 3px 2px darkgray;
+    font-size: 5rem;
+    font-family: 'Bebas Neue', cursive;
+    margin-top: 0rem;
 }
 .tekst p {
-    font: 1em sans-serif;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
     line-break: 4;
 
 }
@@ -33,18 +36,18 @@ body {
     flex-flow: row;
     flex-direction: row;
 
-
-
 }
 
 .lingid a {
-    color: #f0f8ff;
+    color: #9c6ca9;
     width: max-content;
     background-color: var(--color-secondary);
     padding: 2%;
     flex-grow: 100;
     transition: 1s ease;
+    font-family: 'Bebas Neue', cursive;
     text-align: center;
+    text-decoration: none;
 }
 
 .lingid a:hover {

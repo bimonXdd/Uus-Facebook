@@ -1,19 +1,31 @@
 :root{
-    --color-primary:#F89999;
+    --color-primary:#feeba2;
     --color-secondary: #F6C0BA;
     --color-accent: #feeba2;
     --color-text: black;
+}
+body{
+    
+    background-image: url('/lehed/indeks/EpicTaust.png');
+    
 }
 
 #valikud{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     margin: 1rem, 1.5rem, 1rem, 1.5rem;
     background-color: var(--color-primary);
+    font-family: 'Bebas Neue', cursive;
+    height: 100%;
+    border-radius: 1rem;
+    
 
 }
-#nupp2, #nupp3, #nupp1{
+.nupp{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
     border: none;
     border-radius: 0.5rem;
     background-color: var(--color-secondary);
@@ -23,11 +35,24 @@
     width: 5rem;
     height: 2.5rem;
     transition: 0.6s;
+    color: #9c6ca9;
 }
 
-#nupp2:hover,#nupp1:hover,#nupp3:hover{
+.nupp:hover{
     background: #feeba2;
     width: 6rem;
     height: 3rem;
-    
+}
+
+#tagasi{
+    position: fixed;
+    background-color: #F6C0BA;
+    border-radius: 1rem;
+    padding: 1rem, 1.5rem, 1rem, 1.5rem;
+    border: none;
+    left: 2rem;
+    top: 2rem;
+    font-size: 1.5rem;
+    color: #9c6ca9;
+    font-family: 'Bebas Neue', cursive;
 }
