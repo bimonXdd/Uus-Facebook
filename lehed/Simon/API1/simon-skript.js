@@ -10,7 +10,9 @@ const options = {
 function nali(){
 	fetch('https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random', options)
 		.then(response => response.json()) 
-		.then(response => document.getElementById("info").innerHTML = response.value)
+		.then(response => {document.getElementById("info").innerHTML = response.value
+		
+	})
 		.catch(err => console.error(err));
 
 };

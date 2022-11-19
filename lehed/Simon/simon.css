@@ -1,8 +1,8 @@
 :root{
     --color-primary:#feeba2;
-    --color-secondary: #F6C0BA;
+    --color-secondary: #F89999;
     --color-accent: #feeba2;
-    --color-text: black;
+    
 }
 body{
     
@@ -20,6 +20,7 @@ body{
     font-family: 'Bebas Neue', cursive;
     height: 100%;
     border-radius: 1rem;
+    opacity: 0.6;
     
 
 }
@@ -29,13 +30,14 @@ body{
     border: none;
     border-radius: 0.5rem;
     background-color: var(--color-secondary);
-    color:var(--color-text);
+    
     margin-left: 1rem;
     margin-right: 1rem;
     width: 5rem;
     height: 2.5rem;
     transition: 0.6s;
     color: #9c6ca9;
+    cursor: pointer;
 }
 
 .nupp:hover{
@@ -44,15 +46,5 @@ body{
     height: 3rem;
 }
 
-#tagasi{
-    position: fixed;
-    background-color: #F6C0BA;
-    border-radius: 1rem;
-    padding: 1rem, 1.5rem, 1rem, 1.5rem;
-    border: none;
-    left: 2rem;
-    top: 2rem;
-    font-size: 1.5rem;
-    color: #9c6ca9;
-    font-family: 'Bebas Neue', cursive;
-}
+
+

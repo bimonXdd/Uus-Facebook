@@ -3,19 +3,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>API1</title>
     <link rel="stylesheet" href="API1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
 </head>
 <body onload="nali()">
+    <div id="bar">
+        <a href="/lehed/indeks/indeks.html"><button>Tagasi algusesse</button></a>
+        <a href="/lehed/Simon/API2.html"><button>Epic API 2</button></a>
+        <a href="/lehed/Simon/API3.html"><button>Epic API 3</button></a>
+        
+ 
 
-    
-    <img onclick="EpicTrack()" src="chuck.jpg" alt="chuck pic">
-    <p id="info"></p>
+    </div>
+
+    <div id="main">
+    <img id="pilt" onclick="EpicTrack()" src="chuck.jpg" alt="chuck pic">
     <audio id="Music" src="Holding Out for a Hero.mp3" controls autoplay></audio>
-    <button onclick="nali()">Uus Chuck joke</button>
+    <div id="text">
+        <p id="info"></p>
+        <button id="nupp" onclick="nali()">Uus Chuck joke</button>
+    
+    </div>
+    </div>
+    
     <script src="simon-skript.js"></script>
 </body>
 </html>
