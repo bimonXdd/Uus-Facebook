@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="API3.css">
+</head>
+<body onload="randomFactOfToday();randomFact()" >
+    <div id="bar">
+        <a href="/lehed/indeks/indeks.html"><button>Main page</button></a>
+        <a href="/lehed/Simon/API1/API1.html"><button>Chuck jokes</button></a>
+        <a href="/lehed/Simon/API2/API2.html"><button>Excuse</button></a>
+    </div>
+    <div id="content">
+        <div>
+            <p class="text" id="random">random fact</p>
+            <button id="nupp"  onclick="randomFact()">Uus fakt</button>
+        </div>
+    
+        <div id="FOT">
+            <h1 class="text" id="lisatekst">Suvaline tänane fakt  (Muutub iga 24h tagant):</h1>
+            <h1 class="text" id="RandomFactOfTheDay"> Random fact for today</h1>
+        </div>
+    </div>
+   
+    
+    <script src="API3.js"></script>
+</body>
+</html>
