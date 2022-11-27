@@ -1,1 +1,5 @@
-
+button {
+    background-color: aqua;
+    border: 5px;
+    font-size: 20px;
+}
