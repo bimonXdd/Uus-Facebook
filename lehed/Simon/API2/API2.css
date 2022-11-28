@@ -67,11 +67,19 @@ body{
     align-items: center;
     
 }
-
-#Seletus{
+.info{
     font-family: 'Bebas Neue', cursive;
-    font-size: 4rem;
+    font-size: 2rem;
     margin: 1rem;
-    width: 100%;
+    width: 20rem;
     animation: fade 2s;
-    }
+}
+
+#pilt{
+    font-family: 'Bebas Neue', cursive;
+    border-radius: 1rem;
+    margin: 1rem;
+    width: 20rem;
+    height: 20rem;
+    animation: fade 2s;
+}
