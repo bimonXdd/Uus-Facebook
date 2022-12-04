@@ -1,13 +1,13 @@
 :root{
-    --color-primary:#F89999;
-    --color-secondary: #feeba2;
-    --color-accent: #feeba2;
-    --color-text: #a2feeb;
+    --color-primary:#a3d4ea;
+    --color-secondary: #0e597e;
+    --color-accent: #a3d4ea;
+    --color-text: white;
 }
     
 body {
     
-    background-image: url('EpicTaust.png');
+    background-color: var(--color-primary);
 }
     
 .tekst{
@@ -39,7 +39,7 @@ body {
 }
 
 .lingid a {
-    color: #9c6ca9;
+    color: white;
     width: max-content;
     background-color: var(--color-secondary);
     padding: 2%;

@@ -1,12 +1,12 @@
 :root{
-    --color-primary:#feeba2;
-    --color-secondary: #F89999;
-    --color-accent: #feeba2;
+    --color-primary:#a3d4ea;
+    --color-secondary: #0e597e;
+    --color-accent: #a3d4ea;
     
 }
 body{
     
-    background-image: url('/lehed/indeks/EpicTaust.png');
+    background-color:  var(--color-primary);
     
 }
 
@@ -36,12 +36,12 @@ body{
     width: 5rem;
     height: 2.5rem;
     transition: 0.6s;
-    color: #9c6ca9;
+    color: white;
     cursor: pointer;
 }
 
 .nupp:hover{
-    background: #feeba2;
+    background: #a3d4ea;
     width: 6rem;
     height: 3rem;
 }

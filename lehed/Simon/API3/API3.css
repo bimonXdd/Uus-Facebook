@@ -1,5 +1,5 @@
 body{
-    background-image: url('/lehed/indeks/EpicTaust.png');
+    background-color: #a3d4ea;
 }
 #bar{
     display: flex;
@@ -7,7 +7,7 @@ body{
     align-items: center;
     margin: 0.5rem 1rem 1.5rem 1rem;
     padding: 2rem;
-    background-color: #F6C0BA;
+    background-color: #0e597e;
     border-radius: 1rem;
 
 }
@@ -16,19 +16,19 @@ body{
     margin-right: 3rem;
     padding: 0rem;
     border-radius: 1rem;
-    background-color: #F89999;
+    background-color: #a3d4ea;
     transition: 1s;
     text-align: center;
     width: 8rem;
     height: 3rem;
     font-family: 'Bebas Neue', cursive;
     font-size: 1rem;
-    color: #9c6ca9;
+    color: white;
     cursor: pointer;
 
 }
 #bar button:hover{
-    background: #F6C0BA;
+    background: #0e597e;
     width: 10rem;
     height: 3rem;
     font-size: 1.1rem;
@@ -40,13 +40,13 @@ body{
     padding: 0.5rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: #F6C0BA;
+    background-color: #0e597e;
     color:var(--color-text);
     margin-left: 1rem;
     margin-right: 1rem;
     width: 7rem;
     height: 2.5rem;
-    color: #9c6ca9;
+    color: WHITE;
     cursor: pointer;}
 
 .text{
@@ -55,12 +55,13 @@ body{
     margin: 1rem;
     width: 30rem;
     animation: fade 2s;
+    color: white;
     }
 #content{
     display: flex;
 }
 #lisatekst{
-    color:#a2feeb;
+    color:white;
     border: black;
     
 }
