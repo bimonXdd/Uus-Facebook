@@ -35,5 +35,10 @@ h1 {
 	z-index: -1;
 }
 
-
-
+#tagasi {
+    font-family: 'Bebas Neue', cursive;
+    background-color: #0981d1;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
