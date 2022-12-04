@@ -1,11 +1,24 @@
 body {
     background-color: #a3d4ea;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Bebas Neue', cursive;
 }
 
 #nupp {
     background-color: #0981d1;
-    border: 5px;
-    font-size: 20px;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    font-family: 'Bebas Neue', cursive;
 }
 
 #paigutus {
@@ -20,4 +33,8 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 	z-index: -1;
+}
+
+#gif {
+    
 }
