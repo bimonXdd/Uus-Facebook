@@ -233,9 +233,12 @@ function mänguStaatuseLoogika () {
 
 
 function joonistaMäng() {
+  context.beginPath()
   context.canvas.width = window.innerWidth-10
   context.canvas.height = window.innerHeight/1.1
-  context.clearRect(0,0, canvas.width, canvas.height);
+  context.fillStyle = "rgba(255,255,255,1)"
+  context.rect(0,0, canvas.width, canvas.height);
+  context.closePath
   mänguStaatuseLoogika();
 
   if (mänguStaatus == STAATUS_ALGUS) {joonistaMängAlgus();}

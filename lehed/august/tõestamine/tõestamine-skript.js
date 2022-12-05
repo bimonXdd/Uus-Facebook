@@ -76,27 +76,35 @@ function joonistaDiagramm () {
       context.fillText(objekt.tekst.slice(indeks*reaPikkus, (indeks+1)*reaPikkus), objekt.x + 10 , objekt.y + objekt.tekstSuurus + indeks*20);
       context.closePath();
     }
+    context.beginPath();
+    context.font = objekt.tekstSuurus+"px serif";
+    context.fillStyle = "rgb(255,0,0)";
+    context.textAlign = "start";
+    context.fillText(indeks, objekt.x+objekt.laius , objekt.y+objekt.kõrgus);
+    context.closePath();
 
 
   } 
 }
-function joonistaDiagrammMuut() {
+function joonistaDiagrammMuut(indeks) {
 
-  let kastiSuurus = [120,40]
+  let kastiSuurus = [16,16]
+  let kastiAsukoht = [andmed[indeks].x + andmed[indeks].laius - 23,andmed[indeks].y + 6]
   let padding = 4
   let nupuSuurus = 12
 
   context.beginPath();
   //tulevikus roundRect(hetkel puudub toetus)
-  context.rect(hiireAshukoht[0], hiireAshukoht[1], kastiSuurus[0], kastiSuurus[1]); 
+  context.fillStyle = "rgb(200,250,200)"
+  context.rect(andmed[indeks].x, andmed[indeks].y, andmed[indeks].laius, andmed[indeks].kõrgus); 
   context.fill();
   context.closePath();
   context.beginPath();
-  context.rect(hiireAshukoht[0], hiireAshukoht[1], kastiSuurus[0], kastiSuurus[1]); 
+  context.rect(andmed[indeks].x, andmed[indeks].y, andmed[indeks].laius, andmed[indeks].kõrgus); 
   context.stroke();
   context.closePath();
   context.beginPath();
-  context.rect(hiireAshukoht[0] + kastiSuurus[0]-nupuSuurus-padding, hiireAshukoht[1]+padding, nupuSuurus, nupuSuurus); 
+  context.rect(kastiAsukoht[0], kastiAsukoht[1], kastiSuurus[0], kastiSuurus[1]); 
   context.fillStyle = "rgb(100,10,10)"
   context.fill();
   context.closePath();
@@ -106,6 +114,7 @@ function joonistaDiagrammMuut() {
 
 
 function joonistaLeht() {
+  console.log(andmed)
   keskpuntk = [canvas.width/2,canvas.height/2]
   context.canvas.width  = window.innerWidth;
   context.canvas.height = window.innerHeight;
@@ -120,10 +129,17 @@ function joonistaLeht() {
   context.fill();
   context.closePath();
 
-  
   joonistaDiagramm()
   if (onDiagrammiMuut) {
     joonistaDiagrammMuut(indeksPuutubKokku)
+    
+    if (kokkupuuteLoogika(hiireAshukoht,
+      [{x : andmed[indeksPuutubKokku].x  + andmed[indeksPuutubKokku].laius - 23,
+        y : andmed[indeksPuutubKokku].y + 6,
+        laius  : 12,
+        kõrgus : 12}])){
+          andmed.splice(indeksPuutubKokku, 1)
+        }
   }
 }
 
