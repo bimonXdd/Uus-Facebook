@@ -1,7 +1,15 @@
 const canvas = document.getElementById("mäng");
 const context = canvas.getContext("2d");
 
-let aega = 1
+let aega = 1;
+let algaeg = 0;
+let lõppaeg = 0;
+let aegaElus = 0;
+let onSurmaAeg = false;
+let STAATUS_ALGUS = "algus";
+let STAATUS_KÄIB = "käib";
+let STAATUS_LÄBI = "läbi";
+let mänguStaatus = STAATUS_ALGUS;
 
 let mängija = {
   "asukohtX" : 200,
@@ -41,15 +49,15 @@ let mängija = {
 }
 
 let vastane = {
-  "asukohtX" : suvalineInt(0,canvas.width),
-  "asukohtY" : suvalineInt(0,canvas.height),
   "suurus"  : suvalineInt(5,20),
+  "asukohtX" : suvalineInt(0, canvas.width - 20),
+  "asukohtY" : suvalineInt(0, canvas.height - 20),
   "onMängijaVastas" : false,
 }
 
 function uusVastane(){
-  vastane.asukohtX = suvalineInt(0,canvas.width)
-  vastane.asukohtY = suvalineInt(0,canvas.height)
+  vastane.asukohtX = suvalineInt(0, canvas.width - 20)
+  vastane.asukohtY = suvalineInt(0, canvas.height - 20)
   vastane.suurus = suvalineInt(5,20)
 }
 
@@ -84,25 +92,70 @@ function joonistaAeg() {
   context.fill()
   context.closePath();
 }
-function joonistaMängLäbi() {
+function joonistaMängAlgus() {
+  let pealkiriPx = 40
+  let vihjePx = 20
+  let pealkiriAsukoht = [canvas.width*0.5, canvas.height*0.5]
+  let vihjeAsukoht = [canvas.width*0.5, canvas.height*0.8]
+
   context.beginPath();
   context.rect(0,0,canvas.width,canvas.height);
   context.fillStyle = "rgba(91, 136, 126,0.4)";
   context.fill();
   context.closePath();
   context.beginPath();
-  context.font = "40px serif";
+  context.font = pealkiriPx+"px serif";
   context.fillStyle = "rgb(255,255,255)";
-  context.fillText("Mäng Läbi!", canvas.width*0.41, canvas.height*0.5);
+  context.textAlign = "center";
+  context.fillText("Kiired lõuad", pealkiriAsukoht[0], pealkiriAsukoht[1]);
   context.closePath();
   context.beginPath();
-  context.font = "15px serif";
+  context.font = vihjePx+"px serif";
   context.fillStyle = "rgb(255,255,255)";
-  context.fillText("[ vajuta 'u' et uuesti alustada ]", canvas.width*0.42, canvas.height*0.98);
+  context.textAlign = "center";
+  context.fillText("Liigu et mängida!", vihjeAsukoht[0], vihjeAsukoht[1]);
   context.closePath();
 }
+function joonistaMängLäbi() {
+  let pealkiriPx = 40
+  let aegPx = canvas.width/3
+  let uusMängPx = 15    
 
+  let pealkiriAsukoht = [canvas.width*0.5, canvas.height*0.5]
+  let aegAsukoht = [canvas.width/2, canvas.height*0.9]
+  let uusMängAsukoht = [canvas.width*0.5, canvas.height*0.99]
 
+  context.beginPath();
+  context.rect(0,0,canvas.width,canvas.height);
+  context.fillStyle = "rgba(91, 136, 126,0.4)";
+  context.fill();
+  context.closePath();
+  context.beginPath();
+  context.font = pealkiriPx+"px serif";
+  context.fillStyle = "rgb(255,255,255)";
+  context.textAlign = "center";
+  context.fillText("Mäng Läbi!", pealkiriAsukoht[0], pealkiriAsukoht[1]);
+  context.closePath();
+  context.beginPath();
+  context.font = aegPx+"px serif";
+  context.fillStyle = "rgba(255,20,20,0.2)";
+  context.textAlign = "center";
+  context.fillText(aegaElus, aegAsukoht[0], aegAsukoht[1]);
+  context.closePath();
+  context.beginPath();
+  context.font = uusMängPx+"px serif";
+  context.fillStyle = "rgb(255,255,255)";
+  context.textAlign = "center";
+  context.fillText("[ vajuta 'u' et uuesti alustada ]", uusMängAsukoht[0], uusMängAsukoht[1]);
+  context.closePath();
+}
+function arvutaAeg() {
+  lõppaeg = performance.now();
+  aegaElus = (algaeg - lõppaeg)/1000*-1
+  onSurmaAeg = true
+  console.log(aegaElus)
+
+}
 function mänguLoogika() {
   aega -= 0.001
   if (vastane.onMängijaVastas) {
@@ -153,23 +206,53 @@ function mängijaLiikumiseLoogika() {
     else { mängija.asukohtY = canvas.height-mängija.suurus.kõrgus}
   }
 }
+function mänguStaatuseLoogika () {
+
+  let mängijaOnLiikunud = 
+  ( mängija.nupud.alla == true ||mängija.nupud.vasakule  == true ||
+  mängija.nupud.paremale == true || mängija.nupud.ülesse == true);
+
+  if ((mänguStaatus == STAATUS_ALGUS && mängijaOnLiikunud) || 
+      (mänguStaatus == STAATUS_LÄBI && aega > 0)) { 
+
+    mänguStaatus = STAATUS_KÄIB
+    
+    if (aega == 1) {
+      algaeg = performance.now();
+    } 
+  }
+
+  if (aega < 0) {
+    mänguStaatus = STAATUS_LÄBI
+    
+    if (!onSurmaAeg) {
+    arvutaAeg();
+    }
+  }
+}
+
 
 function joonistaMäng() {
+  context.beginPath()
   context.canvas.width = window.innerWidth-10
   context.canvas.height = window.innerHeight/1.1
+  context.fillStyle = "rgba(255,255,255,1)"
+  context.rect(0,0, canvas.width, canvas.height);
+  context.closePath
+  mänguStaatuseLoogika();
 
-  context.clearRect(0,0, canvas.width, canvas.height);
+  if (mänguStaatus == STAATUS_ALGUS) {joonistaMängAlgus();}
 
-  if (aega > 0) {
-    joonistaMängija();
+  if (mänguStaatus == STAATUS_KÄIB) {
     joonistaVastane();
+    joonistaMängija();
     joonistaAeg();  
-
     mänguLoogika();
-    kokkupuuteLoogika();
     mängijaLiikumiseLoogika(); 
+    kokkupuuteLoogika();
   }
-  else {
+
+  if (mänguStaatus == STAATUS_LÄBI) {
     joonistaMängLäbi();
   }
 
@@ -177,8 +260,6 @@ function joonistaMäng() {
     console.log("x:",mängija.asukohtX, "dx:",mängija.kiirus.dx, "laius:",canvas.width, "mängija-laius:",mängija.suurus.laius)
     console.log("Y:",mängija.asukohtY, "dy:",mängija.kiirus.dy, "kõrgus:",canvas.height, "mängija-kõrgus:",mängija.suurus.kõrgus)
   }
-
-  
 }
 
 
@@ -187,6 +268,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("keypress", function(e) {
   if(e.key == "u") {
     aega  = 1
+    onSurmaAeg = false
   }
   if(e.key == "l") {
     aega = 0
