@@ -1,33 +1,50 @@
 :root{
-    --color-primary:#F89999;
-    --color-secondary: #F6C0BA;
-    --color-accent: #3C362A;
-    --color-text: #f0f8ff;
+    --color-primary:#a3d4ea;
+    --color-secondary: #0e597e;
+    --color-accent: #a3d4ea;
+    
+}
+body{
+    
+    background-color:  var(--color-primary);
+    
 }
 
 #valikud{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     margin: 1rem, 1.5rem, 1rem, 1.5rem;
     background-color: var(--color-primary);
+    font-family: 'Bebas Neue', cursive;
+    height: 100%;
+    border-radius: 1rem;
+    opacity: 0.6;
+    
 
 }
-#nupp2, #nupp3, #nupp1{
+.nupp{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1rem;
     border: none;
     border-radius: 0.5rem;
     background-color: var(--color-secondary);
-    color:var(--color-text);
+    
     margin-left: 1rem;
     margin-right: 1rem;
     width: 5rem;
     height: 2.5rem;
     transition: 0.6s;
+    color: white;
+    cursor: pointer;
 }
 
-#nupp2:hover,#nupp1:hover,#nupp3:hover{
-    background: #3C362A;
+.nupp:hover{
+    background: #a3d4ea;
     width: 6rem;
     height: 3rem;
-    
 }
+
+
+
