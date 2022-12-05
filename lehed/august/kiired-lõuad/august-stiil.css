@@ -28,6 +28,7 @@ canvas {
     border-radius: 0.3em;
     padding: 0.3em;
     max-width: 20%;    
+    min-width: 2.8em;
     color: #f0f8ff;
     text-decoration: white;
     

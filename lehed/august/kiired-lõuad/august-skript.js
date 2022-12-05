@@ -307,4 +307,4 @@ function keyUpHandler(e) {
     }
 }
 
-setInterval(joonistaMäng, 1)
+setInterval(joonistaMäng, 0.001)
