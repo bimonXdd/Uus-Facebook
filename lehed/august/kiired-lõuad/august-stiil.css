@@ -1,8 +1,8 @@
 :root{
-    --color-primary:#F89999;
-    --color-secondary: #F6C0BA;
-    --color-accent: rgb(91, 136, 136);
-    --color-text: #f0f8ff;
+    --color-primary:#a3d4ea;
+    --color-secondary: #0e597e;
+    --color-accent: #a3d4ea;
+    --color-text: white;
 }
 
 
@@ -11,17 +11,24 @@ body {
     overflow: hidden;
 }
 
-div {
+.sisu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 1% 1% 1% 1% ;
-
-
+    gap: 0.1em;
 }
 
 canvas {
-    background-color: aliceblue;
+    background-color: var(--color-secondary);
     border-radius: 0.3em;
    
+}
+.tagasi {
+    background-color: var(--color-secondary);
+    border-radius: 0.3em;
+    padding: 0.3em;
+    max-width: 20%;    
+    color: #f0f8ff;
+    text-decoration: white;
+    
 }

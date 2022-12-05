@@ -54,3 +54,11 @@ body {
     flex-grow: 200;
     background-color: var(--color-accent);
 }
+.tagasi {
+    background-color: #a3d4ea;
+}
+
+div a {
+    text-decoration: white;
+
+}

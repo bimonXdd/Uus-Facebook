@@ -6,6 +6,9 @@ let algaeg = 0;
 let lõppaeg = 0;
 let aegaElus = 0;
 let onSurmaAeg = false;
+let onAknaSuurusMuutus = false;
+let STANDARD_SUURUS = [800,600];
+let standardSuurusHälve = (context.canvas.width / STANDARD_SUURUS[0] + context.canvas.height / STANDARD_SUURUS[1])/2;
 let STAATUS_ALGUS = "algus";
 let STAATUS_KÄIB = "käib";
 let STAATUS_LÄBI = "läbi";
@@ -22,17 +25,13 @@ let mängija = {
     ülevalt: true,
     alt: true,
   },
-  "suurus"  : {
-    "laius" : 30,
-    "kõrgus": 30, 
-  },
-
+  "suurus"  :30,
   "onMängijaVastas" : false,
   "suund" : "vasakule",
 
-  "kiirus" : { 
-    "dx"  : 20,
-    "dy"  : 20,
+  "kiirus" : {
+    dx : 20,
+    dy : 20,
   },
   "värvid" : {
     "nägu" : "#F6C0BA",
@@ -58,7 +57,7 @@ let vastane = {
 function uusVastane(){
   vastane.asukohtX = suvalineInt(0, canvas.width - 20)
   vastane.asukohtY = suvalineInt(0, canvas.height - 20)
-  vastane.suurus = suvalineInt(5,20)
+  vastane.suurus = suvalineInt(10,30)
 }
 
 function suvalineInt(min, max) {
@@ -67,13 +66,13 @@ function suvalineInt(min, max) {
 
 function joonistaMängija() {
   context.beginPath();
-  context.rect(mängija.asukohtX, mängija.asukohtY, mängija.suurus.laius, mängija.suurus.kõrgus);
+  context.rect(mängija.asukohtX, mängija.asukohtY, mängija.suurus, mängija.suurus);
   context.fillStyle = mängija.värvid.keha;
   context.fill()
   context.closePath();
   context.beginPath();
   if (mängija.nupud.vasakule || mängija.nupud.paremale)
-    context.rect(mängija.asukohtX,mängija.asukohtY,20*mängija.dx/Math.abs(mängija.dx),mängija.suurus.kõrgus)
+    context.rect(mängija.asukohtX,mängija.asukohtY,20*mängija.dx/Math.abs(mängija.dx),mängija.suurus)
   context.fillStyle = mängija.värvid.nägu;
   context.fill();
   context.closePath();
@@ -88,7 +87,7 @@ function joonistaVastane() {
 function joonistaAeg() {
   context.beginPath();
   context.rect(0,0,canvas.width*aega, 20);
-  context.fillStyle = "rgba(2,3,255,0.3)";
+  context.fillStyle = "rgba(255,"+255*(aega/2)+","+255*(aega/2)+","+0.3*(1/(aega*2+0.1))+")";
   context.fill()
   context.closePath();
 }
@@ -166,17 +165,17 @@ function mänguLoogika() {
 
 function kokkupuuteLoogika() {
   vastane.onMängijaVastas = 
-    (mängija.asukohtX+mängija.suurus.laius >= vastane.asukohtX &&
+    (mängija.asukohtX+mängija.suurus >= vastane.asukohtX &&
       mängija.asukohtX <= vastane.asukohtX ||
       vastane.asukohtX+vastane.suurus >= mängija.asukohtX &&
       vastane.asukohtX <= mängija.asukohtX) &&
-    (mängija.asukohtY+mängija.suurus.kõrgus >= vastane.asukohtY &&
+    (mängija.asukohtY+mängija.suurus >= vastane.asukohtY &&
       mängija.asukohtY <= vastane.asukohtY ||
       vastane.asukohtY+vastane.suurus >= mängija.asukohtY &&
       vastane.asukohtY <= mängija.asukohtY)
-  mängija.asubLaiuses.paremalt = !(mängija.asukohtX + mängija.suurus.laius + mängija.kiirus.dx > canvas.width)
+  mängija.asubLaiuses.paremalt = !(mängija.asukohtX + mängija.suurus + mängija.kiirus.dx > canvas.width)
   mängija.asubLaiuses.vasakult = !(mängija.asukohtX - mängija.kiirus.dx < 0)
-  mängija.asubKõrguses.alt     = !(mängija.asukohtY + mängija.suurus.kõrgus + mängija.kiirus.dx > canvas.height)
+  mängija.asubKõrguses.alt     = !(mängija.asukohtY + mängija.suurus + mängija.kiirus.dx > canvas.height)
   mängija.asubKõrguses.ülevalt = !(mängija.asukohtY - mängija.kiirus.dy < 0)
 }
 
@@ -185,7 +184,7 @@ function mängijaLiikumiseLoogika() {
     if (mängija.asubLaiuses.paremalt) {
       mängija.asukohtX += mängija.kiirus.dx;
     }
-    else { mängija.asukohtX = canvas.width-mängija.suurus.laius}
+    else { mängija.asukohtX = canvas.width-mängija.suurus}
   }
   if (mängija.nupud.vasakule){
     if (mängija.asubLaiuses.vasakult) {
@@ -203,10 +202,20 @@ function mängijaLiikumiseLoogika() {
     if (mängija.asubKõrguses.alt) {
       mängija.asukohtY += mängija.kiirus.dy;
     }
-    else { mängija.asukohtY = canvas.height-mängija.suurus.kõrgus}
+    else { mängija.asukohtY = canvas.height-mängija.suurus}
   }
 }
 function mänguStaatuseLoogika () {
+  onAknaSuurusMuutus = !(STANDARD_SUURUS[0] == context.canvas.width && STANDARD_SUURUS[1] == context.canvas.height)
+
+  if (onAknaSuurusMuutus) {
+    STANDARD_SUURUS = [context.canvas.width,context.canvas.height] 
+    standardSuurusHälve = (context.canvas.width / STANDARD_SUURUS[0] + context.canvas.height / STANDARD_SUURUS[1])/2
+    mängija.suurus *= standardSuurusHälve
+    mängija.kiirus.dx *= standardSuurusHälve
+    mängija.kiirus.dy *= standardSuurusHälve
+    vastane.suurus *= standardSuurusHälve
+  }
 
   let mängijaOnLiikunud = 
   ( mängija.nupud.alla == true ||mängija.nupud.vasakule  == true ||
@@ -233,12 +242,10 @@ function mänguStaatuseLoogika () {
 
 
 function joonistaMäng() {
-  context.beginPath()
   context.canvas.width = window.innerWidth-10
   context.canvas.height = window.innerHeight/1.1
-  context.fillStyle = "rgba(255,255,255,1)"
-  context.rect(0,0, canvas.width, canvas.height);
-  context.closePath
+  context.clearRect = (0,0, canvas.width, canvas.height)
+
   mänguStaatuseLoogika();
 
   if (mänguStaatus == STAATUS_ALGUS) {joonistaMängAlgus();}
@@ -254,11 +261,6 @@ function joonistaMäng() {
 
   if (mänguStaatus == STAATUS_LÄBI) {
     joonistaMängLäbi();
-  }
-
-  if (false){
-    console.log("x:",mängija.asukohtX, "dx:",mängija.kiirus.dx, "laius:",canvas.width, "mängija-laius:",mängija.suurus.laius)
-    console.log("Y:",mängija.asukohtY, "dy:",mängija.kiirus.dy, "kõrgus:",canvas.height, "mängija-kõrgus:",mängija.suurus.kõrgus)
   }
 }
 
@@ -288,8 +290,6 @@ function keyDownHandler(e) {
     if(e.key == "Up" || e.key == "ArrowUp") {
         mängija.nupud.ülesse = true;
     }
-
-    console.log(e)
 }
 
 function keyUpHandler(e) {
